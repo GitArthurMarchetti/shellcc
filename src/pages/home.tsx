@@ -2,6 +2,10 @@
 
 import { Button } from "../components/ui/button"
 import tartaruga from '../assets/img/logo-amarelo.png'
+import tartarugaVerde from '../assets/img/logo-verde.png'
+import tartarugaVermelha from '../assets/img/logo-vermeia.png'
+
+
 export default function Home() {
     return (
         <>
@@ -24,52 +28,56 @@ export default function Home() {
                 <section className="bg-bgColor py-10">
                     <img src="" alt="" />
 
-                    <div className="m-auto text-center">
+                    <div className="m-auto pb-32 text-center">
                         <h1 className="text-9xl  text-center fontTitle">Shellcc</h1>
                         <h2 className="text-2xl fonthome">Uma vida longa aos seus patrimonios</h2>
                     </div>
                     <div className="w-full h-80 content-center pl-20 fonthome ">
-                        <p className="text-6xl w-[800px]"><span className="text-[#FFB800]">Gestão</span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimonios.</span></p>
-                        <p className="text-2xl">Seus ativos merecem nosso serviço</p>
-                        <Button className="bg-green-400 text-bgColor hover:bg-green-300">Conhecer nosso serviço</Button>
+                        <p className="text-8xl w-[15.5em] mb-20"><span className="text-[#FFB800]">Gestão</span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimonios.</span></p>
+                        <p className="text-2xl w-96 text-justify">Seus ativos merecem nosso serviço</p>
+                        <Button className="bg-green-400 text-primaryColor w-96 hover:bg-green-300">Conhecer nosso serviço</Button>
 
                     </div>
                 </section>
-                <section>
-                    <div>
-                        <img className="rounded-full" src="" alt="" />
-                    </div>
-                    <div>
-                        <p>Objetivo</p>
-                        <p>Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o
-                            custo de vida de nossos patrimônios. Por isso, desenvolvemos o Turtle, sistema para gerenciamento de custo de ciclo de vida,
-                            onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria
-                            ou uma prevenção para não ficar com patrimonios desvalorizados.</p>
-                    </div>
-                </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,0L60,53.3C120,107,240,213,360,218.7C480,224,600,128,720,117.3C840,107,960,181,1080,197.3C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,96C840,75,960,85,1080,117.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
                     <div className="w-1/3">
-                        <p>Sobre a Shellcc</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, rem pariatur? Tempora vero inventore
-                            ex obcaecati! Repellendus vitae, nulla aut inventore numquam nemo libero? Dolores quasi repellendus vero veniam unde?</p>
+                        <p>Objetivo</p>
+                        <p>Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o custo de vida de nossos patrimônios. Por isso, desenvolvemos o Turtle, sistema para gerenciamento de custo de ciclo de vida, onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria ou uma prevenção para não ficar com patrimonios desvalorizados.</p>
                     </div>
                     <div>
                         <img className="rounded-[50%] h-72 w-72 bg-white" src={tartaruga} alt="" />
                     </div>
                 </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,160L40,149.3C80,139,160,117,240,138.7C320,160,400,224,480,250.7C560,277,640,267,720,229.3C800,192,880,128,960,138.7C1040,149,1120,235,1200,266.7C1280,299,1360,277,1400,266.7L1440,256L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>                <section>
+                <section><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+
+
+                </section>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>                <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
                     <div>
-                        <img className="rounded[30%]" src="" alt="" />
+                        <img className="rounded-[50%] h-72 w-72 bg-white" src={tartarugaVerde} alt="" />
                     </div>
-                    <div>
-                        <p>Equipe</p>
-                        <p>Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do
-                            design gráfico. Eduardo Borges, Arthur D’eça, Rafael Schmidt, Rafagath Klug e Luiza Fischer.</p>
+                    <div className="w-1/3">
+                        <p>Sobre a Shellcc</p>
+                        <p>Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico. Eduardo Borges, Arthur D’eça, Rafael Schmidt, Rafagath Klug e Luiza Fischer.</p>
                     </div>
 
                 </section>
-            </main>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,80C120,96,240,128,360,122.7C480,117,600,75,720,53.3C840,32,960,32,1080,53.3C1200,75,1320,117,1380,138.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>                <section>
+                </section>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,224L60,234.7C120,245,240,267,360,245.3C480,224,600,160,720,133.3C840,107,960,117,1080,133.3C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+                <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
+                    <div className="w-1/3">
+                        <p>Equipe</p>
+                        <p>Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico. Eduardo Borges, Arthur D’eça, Rafael Schmidt, Rafagath Klug e Luiza Fischer.</p>
+                    </div>
+                    <div>
+                        <img className="rounded-[50%] h-72 w-72 bg-white" src={tartarugaVermelha} alt="" />
+                    </div>
+
+                </section>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,160L60,176C120,192,240,224,360,208C480,192,600,128,720,101.3C840,75,960,85,1080,122.7C1200,160,1320,224,1380,256L1440,288L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+            </main >
             <footer className="bg-black w-full h-full text-primaryColor">
                 <section className="flex flex-row w-11/12  m-auto justify-around">
                     <div>
