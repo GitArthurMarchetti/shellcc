@@ -31,7 +31,8 @@ export default function Home() {
                     <div className="w-full h-80 content-center pl-20 fonthome ">
                         <p className="text-6xl w-[800px]"><span className="text-[#FFB800]">Gestão</span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimonios.</span></p>
                         <p className="text-2xl">Seus ativos merecem nosso serviço</p>
-                        <Button>Conhecer nosso serviço</Button>
+                        <Button className="bg-green-400 text-bgColor hover:bg-green-300">Conhecer nosso serviço</Button>
+
                     </div>
                 </section>
                 <section>
