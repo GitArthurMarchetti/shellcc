@@ -85,8 +85,13 @@
 }
 
 .borderDashed {
-  border: dashed white 0.1em;
+  border: dashed white 2px;
 
+}
+
+.borda-input {
+  border: 1px solid white;
+  padding: 2px;
 }
 
 .bgimg {
@@ -102,11 +107,12 @@
   right: 0;
   bottom: 0;
   background-image: url('./assets/img/graficos.png');
+  background-size: contain;
+  background-position: bottom;
   background-repeat: no-repeat;
-  background-size: 100%;
-  height: 90%;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  height: 100%;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
   z-index: 0;
 }
 
@@ -119,8 +125,8 @@
   background-image: url('./assets/img/graficos.png');
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
   z-index: 0;
 }
 
@@ -130,6 +136,9 @@
   z-index: 1;
 }
 
+.bordaa {
+  border: 1px solid blue;
+}
 
 
 * {

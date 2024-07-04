@@ -4,6 +4,7 @@ import { Button } from "../components/ui/button"
 import tartaruga from '../assets/img/logo-amarelo.png'
 import tartarugaVerde from '../assets/img/logo-verde.png'
 import tartarugaVermelha from '../assets/img/logo-vermeia.png'
+import { MdMailOutline } from "react-icons/md"
 
 
 export default function Home() {
@@ -37,7 +38,7 @@ export default function Home() {
                 </nav>
             </header>
             <main className="w-full h-full bg-bgColor text-primaryColor">
-                <section className="bgimg py-10">
+                <section className="bgimg pt-10">
                     <img src="" alt="" />
 
                     <div className="m-auto pb-32 text-center">
@@ -66,8 +67,8 @@ export default function Home() {
                         </Button>
 
                     </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="z-10 relative" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,96C840,75,960,85,1080,117.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,96C840,75,960,85,1080,117.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
                     <div className="w-1/3">
                         <p className="text-3xl font-bold underline">
@@ -107,7 +108,7 @@ export default function Home() {
                             Sobre a Shellcc
                         </p>
                         <p>
-                            O Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
+                            A Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
                         </p>
                     </div>
                     <div>
@@ -121,19 +122,29 @@ export default function Home() {
 
 
             </main >
-            <footer className="bg-black w-full h-full text-primaryColor">
+            <footer className="bg-black w-full h-full py-6 text-primaryColor">
                 <section className="flex flex-row w-11/12  m-auto justify-around">
                     <div>
-                        <h2>
-                            Shellc
-                        </h2>
-                        <p>
-                            Agradecemos por nos dar uma chance!
-                        </p>
-                        <p>
-                            Nossos contatos pessoais:
-                        </p>
-                        <p>
+                        <div className="text-center mb-4">
+                            <h2 className="fontTitle text-7xl">
+                                Shellcc
+                            </h2>
+                            <p>
+                                Agradecemos por nos dar uma chance!
+                            </p>
+                        </div>
+                        <div className="gap-2 flex flex-col">
+                            <p className="text-xl font-bold">
+                                Nossos contatos pessoais:
+                            </p>
+                            <p className="underline flex  decoration-primaryColor decoration-2  items-center gap-2">
+                                eduardo_borges@infointelligence.com.br <MdMailOutline />
+                            </p>
+                            <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
+                                avinhasmarchetti@gmail.com <MdMailOutline />
+                            </p>
+                        </div>
+                        {/* <p>
                             exemplo@gmail.com
                         </p>
                         <p>
@@ -144,23 +155,17 @@ export default function Home() {
                         </p>
                         <p>
                             exemplo@gmail.com
-                        </p>
-                        <p>
-                            exemplo@gmail.com
-                        </p>
-                        <p>
-                            exemplo@gmail.com
-                        </p>
+                        </p> */}
                     </div>
                     <div className="flex flex-col">
-                        <p>
+                        <p className="text-center text-xl fonthome font-bold">
                             Entrar em contato
                         </p>
-                        <form className="flex flex-col" action="https://formsubmit.co/duduborges333969@gmail.com" method="POST">
-                            <input type="text" name="name" required />
-                            <input type="email" name="email" required />
-                            <textarea name="message" required />
-                            <button type="submit">Send</button>
+                        <form className="flex gap-2 flex-col" action="https://formsubmit.co/duduborges333969@gmail.com" method="POST">
+                            <input className="h-10 rounded-sm  focus:scale-105 transition-all duration-500 focus:outline-none  bordaa focus:border-cyan-300 px-2" type="text" name="name" required placeholder="Informe seu nome" />
+                            <input type="email" className="h-10 rounded-sm  focus:scale-105 transition-all bordaa focus:border-cyan-300 duration-500 focus:outline-none border border-red-500 px-2" name="email" required placeholder="Informe seu email" />
+                            <textarea className="h-24 rounded-sm  focus:scale-105 transition-all duration-500 bordaa focus:border-cyan-300 focus:outline-none border border-red-500 p-2 mb-2 resize-none" name="message" required placeholder="Deixe seu recado" />
+                            <button type="submit" className="bg-bgColor py-2 rounded-sm w-3/4 m-auto fonthome">Enviar</button>
                         </form>
                     </div>
                 </section>
