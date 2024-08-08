@@ -143,6 +143,9 @@ export default function Home() {
                             <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
                                 avinhasmarchetti@gmail.com <MdMailOutline />
                             </p>
+                            <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
+                                rafagmk@gmail.com <MdMailOutline />
+                            </p>
                         </div>
                         {/* <p>
                             exemplo@gmail.com
