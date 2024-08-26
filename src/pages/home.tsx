@@ -16,22 +16,23 @@ export default function Home() {
                         <a href="">
                             Início
                         </a>
-                        <a href="">
+                        <a href="#objetivo">
                             Objetivo
                         </a>
-                        <a href="">
-                            Sobre
-                        </a>
-                        <a href="">
+                        <a href="#equipe">
                             Equipe
                         </a>
+                        <a href="#sobre">
+                            Sobre
+                        </a>
+                        
                     </div>
 
                     <div className="w-[15%] flex flex-row mr-8 justify-between ">
                         <Button className="rounded-full text-xl p-6 border-white borderDashed ">
                             Criar conta
                         </Button>
-                        <Button className="rounded-full text-xl p-6">
+                        <Button className="rounded-full text-xl p-6" >
                             Entrar
                         </Button>
                     </div>
@@ -51,14 +52,9 @@ export default function Home() {
                     </div>
                     <div className="w-full h-80 content-center pl-20 fonthome ">
                         <p className="text-8xl w-[15.5em] mb-20">
-                            <span className="text-[#FFB800]">
-                                Gestão
-                            </span> e
-                            <span className="text-[#FFB800]">
-                                supervisão</span>  dos seus
-                            <span className="text-[#D63B56]">
-                                patrimonios.
-                            </span></p>
+                            <span className="text-[#FFB800]">Gestão</span> e
+                            <span className="text-[#FFB800]"> supervisão</span>  dos seus
+                            <span className="text-[#D63B56]"> patrimonios.</span></p>
                         <p className="text-2xl w-96 text-justify">
                             Seus ativos merecem nosso serviço
                         </p>
@@ -71,7 +67,7 @@ export default function Home() {
                 </section>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
                     <div className="w-1/3">
-                        <p className="text-3xl font-bold underline">
+                        <p className="text-3xl font-bold underline" id="objetivo">
                             Objetivo
                         </p>
                         <p>
@@ -89,7 +85,7 @@ export default function Home() {
                             <img className="rounded-[50%] h-72 w-72 flutuando" src={tartarugaVermelha} alt="" />
                         </div>
                         <div className="w-1/3">
-                            <p className="text-3xl font-bold underline">
+                            <p className="text-3xl font-bold underline" id="equipe">
                                 Equipe
                             </p>
                             <p>
@@ -104,7 +100,7 @@ export default function Home() {
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center">
 
                     <div className="w-1/3">
-                        <p className="text-3xl font-bold underline">
+                        <p className="text-3xl font-bold underline" id="sobre">
                             Sobre a Shellcc
                         </p>
                         <p>

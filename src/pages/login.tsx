@@ -18,7 +18,7 @@ function Login() {
                                 Shellcc
                             </h1>
                             <p className="w-3/4 m-auto text-left">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, veritatis nulla doloribus odit illum tenetur minima dolorum beatae id repellendus. Reiciendis quam dolore eos qui. Cupiditate nemo nisi reprehenderit fuga!
+                            A Shellcc é a parceira perfeita para auxiliar na administração de ativos e no desenvolvimento do seu negócio. Com especialidade em acompanhar a desvalorização e maximizar os valores, disponibilizamos suporte estratégico e personalizado para promover o sucesso do seu negócio.
                             </p>
                         </div>
                         <div>
@@ -33,10 +33,10 @@ function Login() {
                         <div className="flex flex-col">
                             <form action="" className="flex flex-col gap-2 mt-6">
                                 <label className="text-xl" htmlFor="">Email</ label>
-                                <input className="bg-transparent focus:outline-none borda-input w-full px-2 py-0.5" type="text" />
+                                <input className="bg-transparent focus:outline-none borda-input w-full px-2 py-2 rounded-md" type="text" />
                                 <label className="text-xl" htmlFor="">Senha</label>
                                 <div className="w-full flex flex-row justify-center align-middle borda-input pr-2  items-center">
-                                    <input type={mostra ? 'password' : 'text'} className="w-full pl-2 py-0.5 bg-transparent focus:outline-none  " />
+                                    <input type={mostra ? 'password' : 'text'} className="w-full pl-2 py-2 rounded-md bg-transparent focus:outline-none  " />
                                     {mostra ?
                                         (<IoEyeOff className="border-input-olho  " onClick={() => setMostra(false)} />)
                                         : (<IoEye className="border-input-olho  " onClick={() => setMostra(true)} />)}
