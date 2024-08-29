@@ -25,7 +25,7 @@ export default function Home() {
                         <a href="#sobre">
                             Sobre
                         </a>
-                        
+
                     </div>
 
                     <div className="w-[15%] flex flex-row mr-8 justify-between ">
@@ -51,14 +51,15 @@ export default function Home() {
                         </h2>
                     </div>
                     <div className="w-full h-80 content-center pl-20 fonthome ">
-                        <p className="text-8xl w-[15.5em] mb-20">
-                            <span className="text-[#FFB800]">Gestão</span> e
-                            <span className="text-[#FFB800]"> supervisão</span>  dos seus
-                            <span className="text-[#D63B56]"> patrimonios.</span></p>
+
+                        <p className="text-8xl w-[15.5em] mb-8">
+                            <span className="text-[#FFB800]">
+                                Gestão </span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimônios.</span>
+                        </p>
                         <p className="text-2xl w-96 text-justify">
                             Seus ativos merecem nosso serviço
                         </p>
-                        <Button className="bg-green-400 text-2xl text-primaryColor w-96 hover:bg-green-300">
+                        <Button className="bg-green-400 py-6 text-2xl text-primaryColor w-96 hover:bg-green-300">
                             Conhecer nosso serviço
                         </Button>
 
