@@ -5,9 +5,12 @@ import tartaruga from '../assets/img/logo-amarelo.png'
 import tartarugaVerde from '../assets/img/logo-verde.png'
 import tartarugaVermelha from '../assets/img/logo-vermeia.png'
 import { MdMailOutline } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 
 
 export default function Home() {
+
+    const navigate = useNavigate()
     return (
         <>
             <header className="w-full">
@@ -28,11 +31,11 @@ export default function Home() {
 
                     </div>
 
-                    <div className="w-[15%] flex flex-row mr-8 gap-2 justify-between">
-                        <Button className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  hover:bg-[#FFB800]">
+                    <div className="w-[15%] flex flex-row mr-8 gap-5 justify-between">
+                        <Button onClick={() => navigate('/signin')} className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  transition-all duration-500  hover:bg-[#FFB800]">
                             Criar conta
                         </Button>
-                        <Button className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  hover:bg-green-400">
+                        <Button onClick={() => navigate('/login')} className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125] transition-all duration-500  hover:bg-green-400">
                             Entrar
                         </Button>
                     </div>
@@ -69,10 +72,10 @@ export default function Home() {
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center" id="objetivo">
                     <div className="w-1/3">
                         <p className="text-3xl font-bold text-[#FFB800] ">
-                            OBJETIVO 
+                            OBJETIVO
                         </p>
                         <p>
-                            <br/>Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o custo de vida de nossos patrimônios. Por isso, desenvolvemos a SHELLCC,sistema para gerenciamento de custo de ciclo de vida, onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria ou uma prevenção para não ficar com patrimonios desvalorizados.
+                            <br />Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o custo de vida de nossos patrimônios. Por isso, desenvolvemos a SHELLCC,sistema para gerenciamento de custo de ciclo de vida, onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria ou uma prevenção para não ficar com patrimonios desvalorizados.
                         </p>
                     </div>
                     <div>
@@ -91,7 +94,7 @@ export default function Home() {
                                 EQUIPE
                             </p>
                             <p className="text-right">
-                                <br/>Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico: Arthur D’eça, Eduardo Borges, Luiza Fischer, Rafael Schmidt e Rafagath Klug.
+                                <br />Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico: Arthur D’eça, Eduardo Borges, Luiza Fischer, Rafael Schmidt e Rafagath Klug.
                             </p>
                         </div>
 
@@ -106,7 +109,7 @@ export default function Home() {
                             SOBRE A SHELLCC
                         </p>
                         <p>
-                            <br/>A Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
+                            <br />A Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
                         </p>
                     </div>
                     <div>
