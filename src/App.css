@@ -101,13 +101,15 @@ html {
 
 
 
-.bgimg {
+.bgimg { 
   position: relative;
   overflow: hidden;
+ 
 }
 
 .bgimg::before {
   content: "";
+  opacity: 30;
   position: absolute;
   top: 0;
   left: 0;
@@ -118,9 +120,10 @@ html {
   background-position: bottom;
   background-repeat: no-repeat;
   height: 100%;
+  opacity: 20%;
   filter: blur(5px);
   -webkit-filter: blur(5px);
-  z-index: 0;
+  z-index: 0; 
 }
 
 .bgimg-blur {
@@ -132,7 +135,7 @@ html {
   background-image: url('./assets/img/graficos.png');
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(100px);
+  filter: blur(300px);
   -webkit-filter: blur(100px);
   z-index: 0;
 }
@@ -141,6 +144,7 @@ html {
 .bgimg>div {
   position: relative;
   z-index: 1;
+  
 }
 
 .bordaa {

@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <>
             <header className="w-full">
-                <nav className="flex flex-row w-full py-6  justify-between p-2 pl-5 pr-5 bg-gray-800">
+                <nav className="flex flex-row w-full py-6  justify-between p-2 pl-5 pr-5 bg-[#0e1125]">
                     <div className="w-[25%] flex-row  items-center ml-8 gap-3 fonthome flex text-2xl justify-between text-primaryColor">
                         <a href="">
                             Início
@@ -28,11 +28,11 @@ export default function Home() {
 
                     </div>
 
-                    <div className="w-[15%] flex flex-row mr-8 gap-2 justify-between ">
-                        <Button className="rounded-full text-xl p-6 border-white borderDashed ">
+                    <div className="w-[15%] flex flex-row mr-8 gap-2 justify-between">
+                        <Button className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  hover:bg-[#FFB800]">
                             Criar conta
                         </Button>
-                        <Button className="rounded-full text-xl p-6" >
+                        <Button className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  hover:bg-green-400">
                             Entrar
                         </Button>
                     </div>
@@ -43,17 +43,17 @@ export default function Home() {
                     <img src="" alt="" />
 
                     <div className="m-auto pb-32 text-center">
-                        <h1 className="text-9xl mt-8  text-center fontTitle">
+                        <h1 className="text-9xl mt-8 text-center fontTitle">
                             Shellcc
                         </h1>
                         <h2 className="text-2xl fonthome">
                             Uma vida longa aos seus patrimonios
                         </h2>
                     </div>
-                    <div className="w-full h-80 content-center pl-20 fonthome ">
+                    <div className="w-full h-50 content-center pl-20 fonthome">
 
-                        <p className="text-8xl w-[15.5em] mb-8">
-                            <span className="text-[#FFB800]">
+                        <p className="text-6xl w-[15.5em] mb-6">
+                            <span className="text-[#FFB800] drop-shadow-2xl">
                                 Gestão </span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimônios.</span>
                         </p>
                         <p className="text-2xl w-96 text-justify">
@@ -68,11 +68,11 @@ export default function Home() {
                 </section>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center" id="objetivo">
                     <div className="w-1/3">
-                        <p className="text-3xl font-bold underline">
-                            Objetivo
+                        <p className="text-3xl font-bold text-[#FFB800] ">
+                            OBJETIVO 
                         </p>
                         <p>
-                            Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o custo de vida de nossos patrimônios. Por isso, desenvolvemos o Turtle, sistema para gerenciamento de custo de ciclo de vida, onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria ou uma prevenção para não ficar com patrimonios desvalorizados.
+                            <br/>Nosso objetivo é resolver um dos problemas mais comuns no mercado, a desinformação sobre o custo de vida de nossos patrimônios. Por isso, desenvolvemos a SHELLCC,sistema para gerenciamento de custo de ciclo de vida, onde você e sua empresa poderão se informar sobre o valor da desvalorização dos patrimônios da empresa, para futuramente fazer uma melhoria ou uma prevenção para não ficar com patrimonios desvalorizados.
                         </p>
                     </div>
                     <div>
@@ -87,11 +87,11 @@ export default function Home() {
                             <img className="rounded-[50%] h-72 w-72 flutuando" src={tartarugaVermelha} alt="" />
                         </div>
                         <div className="w-1/3">
-                            <p className="text-3xl font-bold underline" >
-                                Equipe
+                            <p className="text-3xl font-bold  text-[#D63B56] text-right" >
+                                EQUIPE
                             </p>
-                            <p>
-                                Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico. Eduardo Borges, Arthur D’eça, Rafael Schmidt, Rafagath Klug e Luiza Fischer.
+                            <p className="text-right">
+                                <br/>Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico: Arthur D’eça, Eduardo Borges, Luiza Fischer, Rafael Schmidt e Rafagath Klug.
                             </p>
                         </div>
 
@@ -102,11 +102,11 @@ export default function Home() {
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center" id="sobre">
 
                     <div className="w-1/3">
-                        <p className="text-3xl font-bold underline" >
-                            Sobre a Shellcc
+                        <p className="text-3xl font-bold  text-green-400" >
+                            SOBRE A SHELLCC
                         </p>
                         <p>
-                            A Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
+                            <br/>A Shellcc oferece uma solução eficiente para acompanhar e otimizar os ativos da sua empresa. Com nosso sistema, você pode registrar e monitorar todos os ativos, desde equipamentos até propriedades, mantendo um inventário organizado e atualizado. Além disso, fornecemos insights sobre a depreciação ao longo do tempo, permitindo que você tome decisões informadas sobre manutenção, substituição ou venda. Se precisar de suporte ou tiver alguma dúvida, estamos à disposição para ajudar!
                         </p>
                     </div>
                     <div>
@@ -135,11 +135,14 @@ export default function Home() {
                             <p className="text-xl font-bold">
                                 Nossos contatos pessoais:
                             </p>
+                            <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
+                                avinhasmarchetti@gmail.com <MdMailOutline />
+                            </p>
                             <p className="underline flex  decoration-primaryColor decoration-2  items-center gap-2">
                                 eduardo_borges@infointelligence.com.br <MdMailOutline />
                             </p>
                             <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
-                                avinhasmarchetti@gmail.com <MdMailOutline />
+                                luizafische@gmail.com <MdMailOutline />
                             </p>
                             <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
                                 rafagmk@gmail.com <MdMailOutline />
