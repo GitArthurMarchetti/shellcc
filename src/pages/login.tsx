@@ -19,7 +19,7 @@ function Login() {
                             <h1 className="fontTitle text-8xl text-[#0CC17A]">
                                 Shellcc
                             </h1>
-                            <p className="w-3/4 m-auto text-center">
+                            <p className="w-3/4 m-auto text-left">
                                 <br />A Shellcc auxilia na administração de ativos e no desenvolvimento do seu negócio. Com foco em maximizar valores, oferecemos suporte estratégico e personalizado para impulsionar seu sucesso.
                             </p>
                         </div>
