@@ -46,8 +46,8 @@ function Signin() {
                             <h1 className="fontTitle text-8xl text-[#FFB800]">
                                 Shellcc
                             </h1>
-                            <p className="w-3/4 m-auto text-left">
-                                <br />A Schellcc é a parceira perfeita para auxiliar na administração de ativos e no desenvolvimento do seu negócio. Com especialidade em acompanhar a desvalorização e maximizar os valores, disponibilizamos suporte estratégico e personalizado para promover o sucesso do seu negócio.
+                            <p className="w-3/4 m-auto text-center">
+                                <br />A Shellcc auxilia na administração de ativos e no desenvolvimento do seu negócio. Com foco em maximizar valores, oferecemos suporte estratégico e personalizado para impulsionar seu sucesso.
                             </p>
                         </div>
                         <div>
