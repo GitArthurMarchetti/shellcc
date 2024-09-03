@@ -2,13 +2,12 @@
 
 import { Button } from "../components/ui/button"
 import tartaruga from '../assets/img/logo-amarelo.png'
-import tartarugaVerde from '../assets/img/logo-verde.png'
-import tartarugaVermelha from '../assets/img/logo-vermeia.png'
+import tartarugaVerde from '../assets/img/logo-verdeRafael.png'
 import { MdMailOutline } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 
 
-export default function Home() {
+export default function Fafael() {
 
     const navigate = useNavigate()
     return (
@@ -16,16 +15,16 @@ export default function Home() {
             <header className="w-full">
                 <nav className="flex flex-row w-full py-6  justify-between p-2 pl-5 pr-5 bg-[#0e1125]">
                     <div className="w-[25%] flex-row  items-center ml-8 gap-3 fonthome flex text-2xl justify-between text-primaryColor">
-                        <a className="hover:font-bold transition-all duration-300" href="">
-                            Início
+                        <a href="">
+                            cu
                         </a>
-                        <a className="hover:font-bold transition-all duration-300" href="#objetivo">
+                        <a href="#objetivo">
                             Objetivo
                         </a>
-                        <a className="hover:font-bold transition-all duration-300" href="#equipe">
+                        <a href="#equipe">
                             Equipe
                         </a>
-                        <a className="hover:font-bold transition-all duration-300" href="#sobre">
+                        <a href="#sobre">
                             Sobre
                         </a>
 
@@ -35,7 +34,7 @@ export default function Home() {
                         <Button onClick={() => navigate('/signin')} className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  transition-all duration-500  hover:bg-[#FFB800]">
                             Criar conta
                         </Button>
-                        <Button onClick={() => navigate('/login')} className="rounded-full text-xl p-[1.6rem] border-white border-solid border bg-[#0e1125] transition-all duration-500  hover:bg-green-400">
+                        <Button onClick={() => navigate('/login')} className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125] transition-all duration-500  hover:bg-green-400">
                             Entrar
                         </Button>
                     </div>
@@ -50,24 +49,24 @@ export default function Home() {
                             Shellcc
                         </h1>
                         <h2 className="text-2xl fonthome">
-                            Uma vida longa aos seus bens
+                            Uma vida longa aos seus patrimonios
                         </h2>
                     </div>
                     <div className="w-full h-50 content-center pl-20 fonthome">
 
                         <p className="text-6xl w-[15.5em] mb-6">
                             <span className="text-[#FFB800] drop-shadow-2xl">
-                                Gestão </span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimonios.</span>
+                                Gestão </span> e <span className="text-[#FFB800]">supervisão</span>  dos seus <span className="text-[#D63B56]">patrimônios.</span>
                         </p>
-                        <p className="text-2xl w-96 text-center">
+                        <p className="text-2xl w-96 text-justify">
                             Seus ativos merecem nosso serviço
                         </p>
                         <Button className="bg-green-400 py-6 text-2xl text-primaryColor w-96 hover:bg-green-300">
-                            Descubra como podemos ajudar
+                            Conhecer nosso serviço
                         </Button>
 
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="z-10 relative" viewBox="0 0 1440 318"><path fill="#0e1125" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,96C840,75,960,85,1080,117.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="z-10 relative" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,96C840,75,960,85,1080,117.3C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 </section>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center" id="objetivo">
                     <div className="w-1/3">
@@ -79,15 +78,15 @@ export default function Home() {
                         </p>
                     </div>
                     <div>
-                        <img className="rounded-[50%] h-72 w-72 flutuando" src={tartaruga} alt="" />
+                        <img className="" src={tartaruga} alt="" />
                     </div>
                 </section>
                 <section >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 318"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
 
                     <section className="flex flex-row justify-around text-2xl fonthome align-middle items-center" id="equipe">
                         <div>
-                            <img className="rounded-[50%] h-72 w-72 flutuando" src={tartarugaVermelha} alt="" />
+                            <img className="" alt="" />
                         </div>
                         <div className="w-1/3">
                             <p className="text-3xl font-bold  text-[#D63B56] text-right" >
@@ -101,7 +100,7 @@ export default function Home() {
 
                     </section>
                 </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 318"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
                 <section className="bg-[#0e1125] flex flex-row justify-around text-2xl fonthome align-middle items-center" id="sobre">
 
                     <div className="w-1/3">
@@ -113,11 +112,11 @@ export default function Home() {
                         </p>
                     </div>
                     <div>
-                        <img className="rounded-[50%] h-72 w-72 flutuando" src={tartarugaVerde} alt="" />
+                        <img className="rounded-[50%] h-72 w-180 flutuando" src={tartarugaVerde} alt="" />
                     </div>
 
                 </section>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 318"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,80C120,96,240,128,360,122.7C480,117,600,75,720,53.3C840,32,960,32,1080,53.3C1200,75,1320,117,1380,138.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>                <section>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,80C120,96,240,128,360,122.7C480,117,600,75,720,53.3C840,32,960,32,1080,53.3C1200,75,1320,117,1380,138.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>                <section>
                 </section>
 
 
@@ -127,10 +126,10 @@ export default function Home() {
                 <section className="flex flex-row w-11/12  m-auto justify-around" >
                     <div>
                         <div className="text-center mb-4">
-                            <h2 className="fontTitle text-7xl">
+                            <h2 className="fontTitle text-7xl ">
                                 Shellcc
                             </h2>
-                            <p className=" text-[#0CC17A] ">
+                            <p className=" text-[#0CC17A]">
                                 Agradecemos por nos dar uma chance!
                             </p>
                         </div>
@@ -150,10 +149,6 @@ export default function Home() {
                             <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
                                 rafagmk@gmail.com <MdMailOutline />
                             </p>
-                            <p className="underline flex  decoration-primaryColor decoration-2 items-center gap-2">
-                                santosschmidtrafael@gmail.com <MdMailOutline />
-                            </p>
-
                         </div>
                         {/* <p>
                             exemplo@gmail.com
@@ -169,14 +164,14 @@ export default function Home() {
                         </p> */}
                     </div>
                     <div className="flex flex-col">
-                        <p className="text-center text-xl fonthome font-bold  text-[#0CC17A] ">
+                        <p className="text-center text-xl fonthome font-bold">
                             Entrar em contato
                         </p>
                         <form className="flex gap-2 flex-col" action="https://formsubmit.co/duduborges333969@gmail.com" method="POST">
-                            <input className="h-10 rounded-sm  focus:scale-105 transition-all duration-500 focus:outline-none   px-2" type="text" name="name" required placeholder="Informe seu nome" />
-                            <input type="email" className="h-10 rounded-sm  focus:scale-105 transition-all  duration-500 focus:outline-none border border-red-500 px-2" name="email" required placeholder="Informe seu email" />
-                            <textarea className="h-24 rounded-sm  focus:scale-105 transition-all duration-500  focus:outline-none border border-red-500 p-2 mb-2 resize-none" name="message" required placeholder="Deixe seu recado" />
-                            <button type="submit" className="bg-bgColor py-2 rounded-sm w-3/4 m-auto fonthome border-white bg-black border-solid border">Enviar</button>
+                            <input className="h-10 rounded-sm  focus:scale-105 transition-all duration-500 focus:outline-none  bordaa focus:border-cyan-300 px-2" type="text" name="name" required placeholder="Informe seu nome" />
+                            <input type="email" className="h-10 rounded-sm  focus:scale-105 transition-all bordaa focus:border-cyan-300 duration-500 focus:outline-none border border-red-500 px-2" name="email" required placeholder="Informe seu email" />
+                            <textarea className="h-24 rounded-sm  focus:scale-105 transition-all duration-500 bordaa focus:border-cyan-300 focus:outline-none border border-red-500 p-2 mb-2 resize-none" name="message" required placeholder="Deixe seu recado" />
+                            <button type="submit" className="bg-bgColor py-2 rounded-sm w-3/4 m-auto fonthome">Enviar</button>
                         </form>
                     </div>
                 </section>
