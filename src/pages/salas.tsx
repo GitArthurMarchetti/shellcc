@@ -1,6 +1,6 @@
 import { CardSalas, SalasLado } from '@/components/salas'
 import '../App.css'
-
+import { IoMdAdd } from "react-icons/io";
 function Salas() {
 
     return (
@@ -17,7 +17,8 @@ function Salas() {
                     </div>
 
                 </aside>
-                <section className='h-full gap-y-16 py-[100px] flex justify-evenly w-full items-center flex-wrap  '>
+                <section className='h-full gap-y-16 py-[100px] flex justify-evenly w-full relative items-center flex-wrap  '>
+                    <div className='bg-[#353952] absolute top-3 right-10 cursor-pointer border border-white border-solid' > <IoMdAdd size={50} /></div>
                     <CardSalas
                         corFundo='bg-[#7D51D2]'
                         corBorda='border-[#7D51D2]'

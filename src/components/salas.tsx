@@ -33,7 +33,7 @@ function SalasLado({ cor, titulo, classname }: ladoProps) {
 function CardSalas({ titulo, corFundo, corBorda, className, descricao, membrosAtual, maxMembros, limiteCat, limitePat, isMod }: cardProps) {
     return (
         <>
-            <div className={`w-[35%] relative cursor-pointer border-solid ${corBorda} border rounded-lg  transition-all duration-300 hover:-translate-y-2 `}>
+            <div className={`w-[35%] relative cursor-pointer border-solid shadow-2xl ${corBorda} border rounded-lg  transition-all duration-300 hover:-translate-y-2 `}>
                 <div className={`${corFundo} ${className} absolute right-[-1px] top-[-30px] px-4 rounded-md py-2 flex items-center gap-3 `}>
                     {isMod ? (<>
                         <BiSolidCrown size={25} />

@@ -16,7 +16,7 @@ function Login() {
                             <p className="text-xl ">
                                 <b>Seja Bem-Vindo</b>
                             </p>
-                            <h1 className="fontTitle text-8xl text-[#0CC17A]">
+                            <h1 className="fontTitle text-8xl text-[#FFB800]">
                                 Shellcc
                             </h1>
                             <p className="w-3/4 m-auto text-left">
