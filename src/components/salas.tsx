@@ -1,6 +1,7 @@
 import { BiSolidCrown } from "react-icons/bi";
 import { FaUserCog } from "react-icons/fa";
 import { CiMenuKebab } from "react-icons/ci";
+import { MouseEventHandler } from "react";
 interface ladoProps {
     cor?: string,
     titulo: string,
@@ -8,6 +9,7 @@ interface ladoProps {
 }
 interface cardProps {
     titulo: string,
+    onclick?: MouseEventHandler,
     corFundo?: string,
     className?: string,
     descricao?: string
@@ -30,10 +32,10 @@ function SalasLado({ cor, titulo, classname }: ladoProps) {
     )
 }
 
-function CardSalas({ titulo, corFundo, corBorda, className, descricao, membrosAtual, maxMembros, limiteCat, limitePat, isMod }: cardProps) {
+function CardSalas({ onclick, titulo, corFundo, corBorda, className, descricao, membrosAtual, maxMembros, limiteCat, limitePat, isMod }: cardProps) {
     return (
         <>
-            <div className={`w-[35%] relative cursor-pointer border-solid shadow-2xl ${corBorda} border rounded-lg  transition-all duration-300 hover:-translate-y-2 `}>
+            <div onClick={onclick} className={`w-[35%] relative cursor-pointer border-solid shadow-2xl ${corBorda} border rounded-lg  transition-all duration-300 hover:-translate-y-2 `}>
                 <div className={`${corFundo} ${className} absolute right-[-1px] top-[-30px] px-4 rounded-md py-2 flex items-center gap-3 `}>
                     {isMod ? (<>
                         <BiSolidCrown size={25} />

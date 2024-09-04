@@ -1,8 +1,9 @@
 import { CardSalas, SalasLado } from '@/components/salas'
 import '../App.css'
 import { IoMdAdd } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 function Salas() {
-
+    const navigate = useNavigate()
     return (
         <>
             <main className='fonthome bg-bgColor w-full min-h-screen text-primaryColor  flex'>
@@ -20,6 +21,7 @@ function Salas() {
                 <section className='h-full gap-y-16 py-[100px] flex justify-evenly w-full relative items-center flex-wrap  '>
                     <div className='bg-[#353952] hover:bg-[#353990] transition-all duration-500 absolute top-3 right-10 cursor-pointer border border-white border-solid' > <IoMdAdd size={50} /></div>
                     <CardSalas
+                        onclick={() => { navigate('/dashboard') }}
                         corFundo='bg-[#7D51D2]'
                         corBorda='border-[#7D51D2]'
                         titulo="Casas d'água"

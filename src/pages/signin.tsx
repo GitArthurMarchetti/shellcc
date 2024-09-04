@@ -26,7 +26,7 @@ function Signin() {
                                 <input type="password" className="mt-1 bg-transparent focus:outline-none borda-input w-full px-2 py-2 rounded-sm" />
                                 <label className="mt-1 text-2xl" htmlFor="">Confirmar Senha</label>
                                 <input type="password" className="mt-1 bg-transparent focus:outline-none borda-input w-full px-2 py-2 rounded-sm" />
-                                <button className="bg-[#FFB800] duration-500 mt-5 w-3/4 text-2xl font-semibold py-4 fo rounded-xl m-auto  hover:bg-green-300 font-sans text-[#fff]">Cadastrar</button>
+                                <button className="bg-[#FFB800] duration-500 mt-5 w-3/4 text-2xl font-semibold py-4 fo rounded-xl m-auto  hover:bg-[#FFB869] font-sans text-[#fff]">Cadastrar</button>
                             </form>
                             <div className="flex flex-col justify-center items-center mt-3 gap-2">
                                 <p>
