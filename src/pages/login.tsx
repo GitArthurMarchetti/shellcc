@@ -45,7 +45,7 @@ function Login() {
 
                                 </div>
                                 <p className="text-right mb-6 underline mt-1">Esqueceu a senha?</p>
-                                <button className="bg-[#0CC17A] w-3/4 text-2xl font-semibold py-4 fo rounded-xl m-auto duration-500  hover:bg-green-300 font-sans text-[#fff]">Entrar</button>
+                                <button className="bg-[#0CC17A] w-3/4 text-2xl font-semibold py-4 fo rounded-xl m-auto duration-500  hover:bg-green-300 font-sans text-[#fff]" onClick={() => navigate("/dashboard")}>Entrar</button>
                             </form>
                             <div className="flex flex-col justify-center items-center mt-3 gap-2">
                                 <p className="text-[20px] p-2 ">

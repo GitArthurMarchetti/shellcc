@@ -31,7 +31,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className="w-[15%] flex flex-row mr-8 gap-5 justify-between">
+                    <div className="flex flex-row mr-8 gap-5 justify-between">
                         <Button onClick={() => navigate('/signin')} className="rounded-full text-xl p-6 border-white borderDashed bg-[#0e1125]  transition-all duration-500  hover:bg-[#FFB800]">
                             Criar conta
                         </Button>
