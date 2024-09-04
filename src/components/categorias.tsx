@@ -85,10 +85,10 @@ export default function Categoria({ tipo, depreciacaoPadrao, itens }: CategoriaP
 
     );
 }
-export function GraficoCat({ tipo, depreciacaoPadrao, itens }: CategoriaProps) {
-    return (
-        <>
+// export function GraficoCat({ tipo, depreciacaoPadrao, itens }: CategoriaProps) {
+//     return (
+//         <>
 
-        </>
-    )
-}
+//         </>
+//     )
+// }
