@@ -20,6 +20,7 @@ module.exports = {
     extend: {
       colors: {
         primaryColor: '#fff',
+        fundoModal: 'rgba(0, 0, 0, 0.26);',
         bgColor: "#171B34",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

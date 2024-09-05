@@ -5,7 +5,7 @@ import { Login } from "./pages/login"
 import { Signin } from "./pages/signin"
 import Salas from "./pages/salas"
 import Dashboard from "./pages/dashboard"
-import Fafael from "./pages/homeFafael"
+import CriarSala from "./pages/criarSala"
 
 // ROTAS
 const router = createBrowserRouter([
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path: '/home',
-    element: <Fafael />,
+    path: '/criarSala',
+    element: <CriarSala />,
   },
 
 ])

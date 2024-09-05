@@ -37,7 +37,7 @@ export default function Categoria({ tipo, depreciacaoPadrao, itens }: CategoriaP
                 </div>
                 <div className="text-white flex flex-col gap-2 justify-between w-11/12 m-5 pl-4">
                     {itens.map((item, index) => (
-                        <CollapsibleContent key={index}>
+                        <CollapsibleContent className="hover:font-semibold transition-all duration-300 cursor-pointer" key={index}>
                             <div className="flex  items-center ">
                                 {/* Linha ao lado do texto */}
                                 <div className="flex flex-col items-center mr-4">
