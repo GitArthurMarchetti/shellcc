@@ -2,6 +2,8 @@
 
 import { Button } from "../components/ui/button"
 import logoVerdeRafaelPng from "../assets/img/logo-verdeRafael.png"
+import vermelha from '../assets/img/tartarugaVermelhaCerta.png'
+import amarela from '../assets/img/tartarugaAmarelaCerta.png'
 
 import { MdMailOutline } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
@@ -78,13 +80,16 @@ export default function Home() {
                         </p>
                     </div>
                     <div>
-
+                        <img className="rounded-[50%] h-72 flutuando overflow-hidden mt-10" src={amarela} alt="" />
                     </div>
                 </section>
                 <section >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,85.3C120,107,240,149,360,181.3C480,213,600,235,720,218.7C840,203,960,149,1080,128C1200,107,1320,117,1380,122.7L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
 
                     <section className="flex flex-row justify-around text-2xl fonthome align-middle items-center" id="equipe">
+                        <div>
+                            <img className="rounded-[50%] h-72 w-108 flutuando overflow-hidden mt-10" src={vermelha} alt="" />
+                        </div>
                         <div>
                             <img className="" alt="" />
                         </div>
@@ -96,7 +101,6 @@ export default function Home() {
                                 <br />Composta por alunos do Sesi Senai da unidade de Florianópolis, nossa equipe conta com jovens talentos da programação e do design gráfico: Arthur D’eça, Eduardo Borges, Luiza Fischer, Rafael Schmidt e Rafagath Klug.
                             </p>
                         </div>
-
 
                     </section>
                 </section>
@@ -114,7 +118,7 @@ export default function Home() {
 
                     </div>
                     <div>
-                        <img className="rounded-[50%] h-72 w-108 flutuando overflow-hidden mt-10" src={logoVerdeRafaelPng} alt="" />
+                        <img className="rounded-[50%] h-72  flutuando overflow-hidden mt-10" src={logoVerdeRafaelPng} alt="" />
                     </div>
                 </section>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0e1125" fill-opacity="1" d="M0,64L60,80C120,96,240,128,360,122.7C480,117,600,75,720,53.3C840,32,960,32,1080,53.3C1200,75,1320,117,1380,138.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>                <section>
