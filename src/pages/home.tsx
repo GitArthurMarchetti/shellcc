@@ -90,9 +90,7 @@ export default function Home() {
                         <div>
                             <img className="rounded-[50%] h-72 w-108 flutuando overflow-hidden mt-10" src={vermelha} alt="" />
                         </div>
-                        <div>
-                            <img className="" alt="" />
-                        </div>
+
                         <div className="w-2/6">
                             <p className="text-5xl font-bold  text-[#D63B56] text-right mr-5 mb-2.5">
                                 EQUIPE

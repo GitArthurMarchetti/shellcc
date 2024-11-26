@@ -1,119 +1,322 @@
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "../components/ui/dropdown-menu";
-import { FaChevronDown, FaSearch } from 'react-icons/fa'; // Importando o ícone de seta para baixo
+import { useState, useEffect } from "react";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import Categoria from "@/components/categorias";
-import grafico from "../assets/img/grafico.png"
-import gastos from "../assets/img/gastos.png"
+import AddPatrimonio from "../components/addPatrimonio";
+import { useAuth } from '../contexts/AuthContext';
+import { PatrimonyService } from '../services/patrimonyService';
+import { Category, Patrimony } from '../types/patrimony';
+import { useParams, useNavigate } from "react-router-dom";
+import CategoriaModal from "@/components/CategoriaModal";
 
 export default function Dashboard() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const { roomId } = useParams();
+    const [isCategoriaModalOpen, setIsCategoriaModalOpen] = useState(false);
+    // Estados
+    const [isPatrimonioModalOpen, setIsPatrimonioModalOpen] = useState(false);
+    const [selectedCategoria, setSelectedCategoria] = useState<Category | null>(null);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [patrimonios, setPatrimonios] = useState<Record<number, Patrimony[]>>({});
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedPatrimonio, setSelectedPatrimonio] = useState<Patrimony | null>(null);
 
-    const item1 = [
-        {
-            nome: 'Dell XP11',
-            codigo: 111155115,
-            porcentagem: 90,
-            valorFinal: "200,00"
-        },
-        {
-            nome: 'Lenovo IdeaPad',
-            codigo: 111155115,
-            porcentagem: 70,
-            valorFinal: "200,00"
-        },
-        {
-            nome: 'Dell Xp14',
-            codigo: 111155115,
-            porcentagem: 50,
-            valorFinal: "100,00"
-        },
-        {
-            nome: 'Notebook Acer Aspire',
-            codigo: 111155115,
-            porcentagem: 35,
-            valorFinal: "600,00"
-        },
-        {
-            nome: 'Lenovo Xangai',
-            codigo: 111155115,
-            porcentagem: 15,
-            valorFinal: "1200,00"
+    const patrimonyService = new PatrimonyService(user?.token || '');
+
+    // Função para mostrar notificações
+    const showNotification = (message: string, type: 'success' | 'error') => {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 p-4 rounded-md ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } text-white z-50`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    };
+
+    // Carregar dados
+    const loadData = async () => {
+        try {
+            setLoading(true);
+            const fetchedCategories = await patrimonyService.getCategories(Number(roomId));
+            setCategories(fetchedCategories);
+
+            const patrimoniosMap: Record<number, Patrimony[]> = {};
+            await Promise.all(
+                fetchedCategories.map(async (category) => {
+                    const categoryPatrimonios = await patrimonyService.getPatrimoniesByCategory(category.id);
+                    patrimoniosMap[category.id] = categoryPatrimonios;
+                })
+            );
+            setPatrimonios(patrimoniosMap);
+        } catch (error) {
+            showNotification("Erro ao carregar dados", 'error');
+        } finally {
+            setLoading(false);
         }
-    ];
+    };
+
+    useEffect(() => {
+        if (!user?.token) {
+            navigate('/login');
+            return;
+        }
+        if (!roomId) {
+            navigate('/salas');
+            return;
+        }
+        loadData();
+    }, [roomId, user?.token, navigate]);
+
+    // Mapeamento de patrimônios para o formato da categoria
+    const mapPatrimoniosToItems = (patrimonios: Patrimony[]) => {
+        return patrimonios.map(p => {
+            const currentValue = typeof p.current_value === 'string'
+                ? parseFloat(p.current_value)
+                : p.current_value;
+
+            const initialValue = typeof p.initial_value === 'string'
+                ? parseFloat(p.initial_value)
+                : p.initial_value;
+
+            return {
+                id: p.id,
+                nome: p.name,
+                codigo: Number(p.code),
+                porcentagem: Math.round((currentValue / initialValue) * 100),
+                valorFinal: currentValue.toFixed(2),
+                patrimonio: p // Referência ao patrimônio completo
+            };
+        });
+    };
+
+    // Funções de manipulação de patrimônios
+    const handleCreatePatrimonio = async (data: any) => {
+        if (!selectedCategoria) return;
+        try {
+            const newPatrimonio = await patrimonyService.createPatrimony({
+                ...data,
+                category_id: selectedCategoria.id,
+                room_id: Number(roomId)
+            });
+
+            setPatrimonios(prev => ({
+                ...prev,
+                [selectedCategoria.id]: [...(prev[selectedCategoria.id] || []), newPatrimonio]
+            }));
+
+            setIsPatrimonioModalOpen(false);
+            showNotification("Patrimônio criado com sucesso!", "success");
+        } catch (error) {
+            showNotification("Erro ao criar patrimônio", "error");
+        }
+    };
+
+    const handleDeletePatrimonio = async (patrimonioId: number, categoryId: number) => {
+        if (!window.confirm('Tem certeza que deseja excluir este patrimônio?')) return;
+        try {
+            await patrimonyService.deletePatrimony(patrimonioId);
+            setPatrimonios(prev => ({
+                ...prev,
+                [categoryId]: prev[categoryId].filter(p => p.id !== patrimonioId)
+            }));
+            if (selectedPatrimonio?.id === patrimonioId) {
+                setSelectedPatrimonio(null);
+            }
+            showNotification("Patrimônio excluído com sucesso!", "success");
+        } catch (error) {
+            showNotification("Erro ao excluir patrimônio", "error");
+        }
+    };
+
+    // Filtro de busca
+    const filteredCategories = categories.filter(category => {
+        const categoryPatrimonios = patrimonios[category.id] || [];
+        return categoryPatrimonios.some(p =>
+            p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            p.code.toString().includes(searchTerm)
+        );
+    });
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-bgColor text-white">
+                <p className="text-2xl">Carregando...</p>
+            </div>
+        );
+    }
+
+    const handleCreateCategory = async (data: { name: string; default_devaluation: number }) => {
+        try {
+            const newCategory = await patrimonyService.createCategory({
+                ...data,
+                room_id: Number(roomId)
+            });
+            setCategories(prev => [...prev, newCategory]);
+            setIsCategoriaModalOpen(false);
+            showNotification("Categoria criada com sucesso!", "success");
+        } catch (error) {
+            showNotification("Erro ao criar categoria", "error");
+        }
+    };
 
 
     return (
-        <>
-            <main className='bg-bgColor fonthome w-full min-h-screen'>
-                <nav className='p-4 bg-gray-800'>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className='flex items-center p-2 text-xl  text-white  rounded'>
-                            <FaChevronDown className='mr-2' /> {/* Ícone de seta para baixo */}
-                            Casas d'água
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className='bg-[#7D51D2] text-white 2text-xl  rounded shadow-md'>
-                            <DropdownMenuItem>
-                                <a href="#unisenai">UniSenai</a>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <a href="#sesi-senai">Sesi Senai</a>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <a href="#fiesc">Fiesc</a>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className=" w-full text-white  ">
-                                <a href="/salas">Minhas Salas</a>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </nav>
+        <main className='bg-bgColor fonthome w-full min-h-screen'>
+            {/* Navegação */}
+            <nav className='p-4 bg-gray-800 flex justify-between items-center'>
+                <DropdownMenu>
+                    <DropdownMenuTrigger className='flex items-center p-2 text-xl text-white rounded'>
+                        <FaChevronDown className='mr-2' />
+                        Casas d'água
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className='bg-[#7D51D2] text-white text-xl rounded shadow-md'>
+                        <DropdownMenuItem>
+                            <a href="#unisenai">UniSenai</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <a href="#sesi-senai">Sesi Senai</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <a href="#fiesc">Fiesc</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full text-white">
+                            <a href="/salas">Minhas Salas</a>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                <button
+                    onClick={() => setIsCategoriaModalOpen(true)}
+                    className="text-[40px] text-white mr-5"
+                >
+                    +
+                </button>
+            </nav>
 
-                <section className="h-max p-10">
+            <section className="h-max p-10">
+                {/* Busca */}
+                <div className="relative mt-4 mb-2 text-white">
+                    <input
+                        type="text"
+                        placeholder="Buscar"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10 p-2 bg-[#777986] border-0 outline-none placeholder:text-white text-white rounded-lg w-80"
+                    />
+                    <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
+                </div>
 
-                    <div className="relative mt-4 mb-2 text-white">
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="pl-10 p-2  bg-[#777986] border-0 outline-none placeholder:text-white text-white rounded-lg w-80"
-                        />
-                        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
+                {/* Conteúdo Principal */}
+                <div className="flex flex-row justify-between text-white">
+                    {/* Lista de Categorias e Patrimônios */}
+                    <div className="h-fit border-solid border-2 border-white w-5/12 overflow-y-auto">
+                        {filteredCategories.map(category => (
+                            <Categoria
+                                key={category.id}
+                                tipo={category.name}
+                                depreciacaoPadrao={category.default_devaluation}
+                                itens={mapPatrimoniosToItems(patrimonios[category.id] || [])}
+                                onAddClick={() => {
+                                    setSelectedCategoria(category);
+                                    setIsPatrimonioModalOpen(true);
+                                }}
+                                onSelectPatrimonio={(patrimonio) => {
+                                    console.log("Selecionando patrimônio:", patrimonio);
+                                    setSelectedPatrimonio(patrimonio);
+                                }}
+                            />
+                        ))}
                     </div>
 
-                    <div className="flex flex-row justify-between text-white">
-                        <div className="h-fit border-solid border-2 border-white w-5/12 overflow-y-auto">
-                            <Categoria itens={item1} tipo="Computadores e eletronicos" depreciacaoPadrao={15} />
-                            <Categoria itens={item1} tipo="Mobílias" depreciacaoPadrao={24} />
-                            <Categoria itens={item1} tipo="Edificios" depreciacaoPadrao={35} />
-                        </div>
+                    {/* Painel de Detalhes */}
+                    <div className="h-fit border-solid border-2 flex flex-col border-white w-5/12 mr-5 px-7 py-5 overflow-y-auto">
+                        {selectedPatrimonio ? (
+                            <>
+                                <h1 className="text-gray-500 text-3xl font-bold">DEPRECIAÇÃO</h1>
+                                <div className="flex items-center justify-between mr-10">
+                                    <p className="text-5xl mt-2">{selectedPatrimonio.name}</p>
+                                    <p className="text-red-500">[{selectedPatrimonio.devaluation_rate}%]</p>
+                                </div>
+                                <p className="text-gray-500 mb-4">
+                                    R$ {Number(selectedPatrimonio.initial_value).toFixed(2)}
+                                    <span className="text-red-500 mx-2">→</span>
+                                    <span className="text-white">
+                                        R$ {Number(selectedPatrimonio.current_value).toFixed(2)}
+                                    </span>
+                                </p>
+                                <p className="text-xl font-light">{selectedPatrimonio.description}</p>
+                                <p className="text-xl font-light mt-6">Localização: {selectedPatrimonio.location}</p>
 
-                        <div className="h-fit border-solid border-2 flex flex-col border-white w-5/12 mr-5 px-7 py-5 overflow-y-auto">
-                            <h1 className="text-gray-500 text-3xl font-bold">DEPRECIAÇÃO</h1>
-                            <img src={grafico} alt="" />
-                            <div className="flex items-center justify-between mr-10">
-                                <p className="text-5xl mt-2 ">Dell XP11</p>
-                                <p className="text-red-500">[15%]</p>
-                            </div>
-                            <p className="text-gray-500 mb-4">R$ 2.000,00 <span className="text-red-500">{"->"}</span> <span className="text-white">200,00</span> </p>
-                            <p className="text-xl font-light">Laptop Dell, 2020 com processador i5 de 17ª geração, placa de vídeo 550gx monitor LG 12 Polegadas, Kit Dell com mouse e Teclado, NOVO </p>
-                            <p className="text-xl font-light mt-6">Localização: Senai Floripa Sala F15</p>
-                            <div className="w-full mt-7 border-b border-solid"></div>
-                            <div className="flex  items-center justify-between mr-7 mt-5">
-                                <p className="text-3xl text-gray-500">Gastos</p>
-                                <p>Total: R$ 13.000,00</p>
-                            </div>
-                            <img src={gastos} alt="" />
-                            <li className="text-red-500 text-center text-xl mt-4">Gastos</li>
+                                <div className="mt-8">
+                                    <h2 className="text-2xl font-bold">Dados da Depreciação</h2>
+                                    <div className="grid grid-cols-2 gap-4 mt-4">
+                                        <div>
+                                            <p className="text-gray-400">Valor Inicial</p>
+                                            <p className="text-xl">
+                                                R$ {Number(selectedPatrimonio.initial_value).toFixed(2)}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400">Valor Atual</p>
+                                            <p className="text-xl">
+                                                R$ {Number(selectedPatrimonio.current_value).toFixed(2)}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400">Taxa de Depreciação</p>
+                                            <p className="text-xl">{selectedPatrimonio.devaluation_rate}% ao ano</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400">Depreciação Total</p>
+                                            <p className="text-xl">
+                                                {Math.round((1 - Number(selectedPatrimonio.current_value) /
+                                                    Number(selectedPatrimonio.initial_value)) * 100)}%
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div className="flex justify-evenly mt-4">
-                                <button className="py-2 rounded-sm text-xl px-4 bg-green-500">Comparar</button>
-                                <button className="py-2 rounded-sm text-xl px-4 bg-purple-500">Gastos</button>
-                                <button className="py-2 rounded-sm text-xl px-4 bg-yellow-500">Editar</button>
-                                <button className="py-2 rounded-sm text-xl px-4 bg-red-500">Deletar</button>
+                                <div className="mt-8 flex justify-end gap-4">
+                                    <button
+                                        className="px-4 py-2 bg-red-500 rounded hover:bg-red-600 transition-colors"
+                                        onClick={() => handleDeletePatrimonio(
+                                            selectedPatrimonio.id,
+                                            selectedPatrimonio.category_id
+                                        )}
+                                    >
+                                        Excluir
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="flex items-center justify-center h-48">
+                                <p className="text-gray-500 text-xl">
+                                    Selecione um patrimônio para ver os detalhes
+                                </p>
                             </div>
-                        </div>
-
+                        )}
                     </div>
+                </div>
+            </section>
 
-                </section>
-            </main>
-        </>
+            <CategoriaModal
+                isOpen={isCategoriaModalOpen}
+                onClose={() => setIsCategoriaModalOpen(false)}
+                onSubmit={handleCreateCategory}
+                roomId={Number(roomId)}
+            />
+
+            {/* Modal de Adição de Patrimônio */}
+            <AddPatrimonio
+                isOpen={isPatrimonioModalOpen}
+                onClose={() => setIsPatrimonioModalOpen(false)}
+                categoria={selectedCategoria?.name}
+                depreciacaoPadrao={selectedCategoria?.default_devaluation}
+                onSubmit={handleCreatePatrimonio}
+            />
+        </main>
     );
 }
