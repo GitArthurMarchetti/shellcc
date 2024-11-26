@@ -5,7 +5,6 @@ import {
      DialogHeader,
      DialogTitle,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 import {
      LineChart,
      Line,
@@ -102,22 +101,19 @@ export default function AddPatrimonio({
                     purchase_date: formData.purchase_date
                });
           }
-          // Log dos dados sendo enviados
-          console.log("Dados do patrimônio sendo enviados:", formData);
      };
 
      return (
           <Dialog open={isOpen} onOpenChange={onClose}>
-               <DialogContent className="bg-[#171B34] text-white max-w-2xl">
-                    <DialogHeader>
+               <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#171B34] text-white w-full max-w-2xl h-[80vh] overflow-hidden flex flex-col">
+                    <DialogHeader className="flex-shrink-0 p-6 border-b border-gray-700">
                          <DialogTitle className="text-2xl flex justify-between items-center">
                               <span>Adicionar à categoria: {categoria || 'Patrimônio'}</span>
-                              <X className="cursor-pointer hover:text-gray-400" onClick={onClose} />
                          </DialogTitle>
                     </DialogHeader>
 
-                    <form onSubmit={handleSubmit} className="mt-4">
-                         <div className="space-y-4">
+                    <div className="flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full p-6">
+                         <form onSubmit={handleSubmit} className="space-y-4">
                               <div>
                                    <label className="block mb-1">Nome do Patrimônio</label>
                                    <input
@@ -242,24 +238,24 @@ export default function AddPatrimonio({
                                         </ResponsiveContainer>
                                    </div>
                               )}
+                         </form>
+                    </div>
 
-                              <div className="flex justify-end gap-4 mt-6">
-                                   <button
-                                        type="button"
-                                        onClick={onClose}
-                                        className="px-6 py-2 bg-red-500 rounded hover:bg-red-600 transition-colors"
-                                   >
-                                        Cancelar
-                                   </button>
-                                   <button
-                                        type="submit"
-                                        className="px-6 py-2 bg-green-500 rounded hover:bg-green-600 transition-colors"
-                                   >
-                                        Criar
-                                   </button>
-                              </div>
-                         </div>
-                    </form>
+                    <div className="flex-shrink-0 p-6 border-t border-gray-700 flex justify-end gap-4">
+                         <button
+                              type="button"
+                              onClick={onClose}
+                              className="px-6 py-2 bg-red-500 rounded hover:bg-red-600 transition-colors"
+                         >
+                              Cancelar
+                         </button>
+                         <button
+                              onClick={handleSubmit}
+                              className="px-6 py-2 bg-green-500 rounded hover:bg-green-600 transition-colors"
+                         >
+                              Criar
+                         </button>
+                    </div>
                </DialogContent>
           </Dialog>
      );

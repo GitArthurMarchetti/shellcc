@@ -30,10 +30,12 @@ export class PatrimonyService {
      }
 
      async getCategories(roomId: number): Promise<Category[]> {
-          const response = await axios.get(`${API_URL}/patrimonies/categories/${roomId}`, this.getHeaders());
+          const response = await axios.get(
+               `http://localhost:3000/api/patrimonies/categories/${roomId}`,
+               this.getHeaders()
+          );
           return response.data;
      }
-
      // Patrimônios
      async createPatrimony(data: CreatePatrimonyData): Promise<Patrimony> {
           const response = await axios.post(`${API_URL}/patrimonies`, data, this.getHeaders());

@@ -154,18 +154,6 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
-                    {/* <p>
-                            exemplo@gmail.com
-                        </p>
-                        <p>
-                            exemplo@gmail.com
-                        </p>
-                        <p>
-                            exemplo@gmail.com
-                        </p>
-                        <p>
-                            exemplo@gmail.com
-                        </p> */}
 
                     <div className="flex flex-col items-center p-6 rounded-lg w-full max-w-lg ml-auto mr-4 border-2 border-[#0CC17A] bg-neutral-900 border-solid">
                         <p className="text-center text-2xl font-bold text-[#0CC17A] mb-4">

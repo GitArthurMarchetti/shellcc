@@ -5,7 +5,6 @@ import {
      DialogHeader,
      DialogTitle,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 import { Category } from '../types/patrimony';
 
 interface CategoriaModalProps {
@@ -50,7 +49,6 @@ export default function CategoriaModal({ isOpen, onClose, onSubmit, category, ro
                     <DialogHeader>
                          <DialogTitle className="text-2xl flex justify-between items-center">
                               <span>{category ? 'Editar' : 'Nova'} Categoria</span>
-                              <X className="cursor-pointer hover:text-gray-400" onClick={onClose} />
                          </DialogTitle>
                     </DialogHeader>
 

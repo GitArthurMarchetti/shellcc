@@ -8,6 +8,15 @@ import { PatrimonyService } from '../services/patrimonyService';
 import { Category, Patrimony } from '../types/patrimony';
 import { useParams, useNavigate } from "react-router-dom";
 import CategoriaModal from "@/components/CategoriaModal";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer
+} from 'recharts';
 
 export default function Dashboard() {
     const { user } = useAuth();
@@ -21,7 +30,9 @@ export default function Dashboard() {
     const [patrimonios, setPatrimonios] = useState<Record<number, Patrimony[]>>({});
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [chartData, setChartData] = useState<Array<{ name: string; value: number }>>([]);
     const [selectedPatrimonio, setSelectedPatrimonio] = useState<Patrimony | null>(null);
+
 
     const patrimonyService = new PatrimonyService(user?.token || '');
 
@@ -59,6 +70,50 @@ export default function Dashboard() {
         }
     };
 
+
+    useEffect(() => {
+        const loadData = async () => {
+            if (!user?.token || !roomId) {
+                console.log('Sem token ou roomId');
+                return;
+            }
+
+            try {
+                setLoading(true);
+                const patrimonyService = new PatrimonyService(user.token);
+
+                console.log('Buscando categorias para sala:', roomId);
+                const fetchedCategories = await patrimonyService.getCategories(Number(roomId));
+                console.log('Categorias encontradas:', fetchedCategories);
+
+                if (!fetchedCategories || fetchedCategories.length === 0) {
+                    console.log('Nenhuma categoria encontrada');
+                }
+
+                setCategories(fetchedCategories);
+
+                const patrimoniosMap: Record<number, Patrimony[]> = {};
+
+                for (const category of fetchedCategories) {
+                    console.log('Buscando patrimônios para categoria:', category.id);
+                    const categoryPatrimonios = await patrimonyService.getPatrimoniesByCategory(category.id);
+                    console.log(`Patrimônios encontrados para categoria ${category.id}:`, categoryPatrimonios);
+                    patrimoniosMap[category.id] = categoryPatrimonios;
+                }
+
+                setPatrimonios(patrimoniosMap);
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                showNotification("Erro ao carregar dados", 'error');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadData();
+    }, [roomId, user?.token]);
+
+
     useEffect(() => {
         if (!user?.token) {
             navigate('/login');
@@ -70,6 +125,25 @@ export default function Dashboard() {
         }
         loadData();
     }, [roomId, user?.token, navigate]);
+
+    const calculateChartData = (patrimony: Patrimony) => {
+        const initialValue = Number(patrimony.initial_value);
+        const devalRate = Number(patrimony.devaluation_rate) / 100;
+        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+            'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+        return months.map((month, index) => ({
+            name: month,
+            value: initialValue * Math.pow(1 - devalRate, index / 12)
+        }));
+    };
+
+    useEffect(() => {
+        if (selectedPatrimonio) {
+            const data = calculateChartData(selectedPatrimonio);
+            setChartData(data);
+        }
+    }, [selectedPatrimonio]);
 
     // Mapeamento de patrimônios para o formato da categoria
     const mapPatrimoniosToItems = (patrimonios: Patrimony[]) => {
@@ -132,14 +206,6 @@ export default function Dashboard() {
         }
     };
 
-    // Filtro de busca
-    const filteredCategories = categories.filter(category => {
-        const categoryPatrimonios = patrimonios[category.id] || [];
-        return categoryPatrimonios.some(p =>
-            p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            p.code.toString().includes(searchTerm)
-        );
-    });
 
     if (loading) {
         return (
@@ -213,7 +279,7 @@ export default function Dashboard() {
                 <div className="flex flex-row justify-between text-white">
                     {/* Lista de Categorias e Patrimônios */}
                     <div className="h-fit border-solid border-2 border-white w-5/12 overflow-y-auto">
-                        {filteredCategories.map(category => (
+                        {categories.map(category => (
                             <Categoria
                                 key={category.id}
                                 tipo={category.name}
@@ -223,10 +289,7 @@ export default function Dashboard() {
                                     setSelectedCategoria(category);
                                     setIsPatrimonioModalOpen(true);
                                 }}
-                                onSelectPatrimonio={(patrimonio) => {
-                                    console.log("Selecionando patrimônio:", patrimonio);
-                                    setSelectedPatrimonio(patrimonio);
-                                }}
+                                onSelectPatrimonio={setSelectedPatrimonio}
                             />
                         ))}
                     </div>
@@ -247,6 +310,30 @@ export default function Dashboard() {
                                         R$ {Number(selectedPatrimonio.current_value).toFixed(2)}
                                     </span>
                                 </p>
+
+                                {/* Gráfico */}
+                                <div className="h-64 mt-4 mb-6">
+                                    <p className="text-lg mb-2">Previsão de Desvalorização</p>
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <LineChart data={chartData}>
+                                            <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                                            <XAxis dataKey="name" stroke="#fff" />
+                                            <YAxis stroke="#fff" />
+                                            <Tooltip
+                                                contentStyle={{ backgroundColor: '#171B34', border: '1px solid white' }}
+                                                labelStyle={{ color: 'white' }}
+                                                formatter={(value: number) => [`R$ ${value.toFixed(2)}`, 'Valor']}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="value"
+                                                stroke="#0CC17A"
+                                                strokeWidth={2}
+                                            />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </div>
+
                                 <p className="text-xl font-light">{selectedPatrimonio.description}</p>
                                 <p className="text-xl font-light mt-6">Localização: {selectedPatrimonio.location}</p>
 

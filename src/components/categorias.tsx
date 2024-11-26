@@ -1,4 +1,3 @@
-// src/components/categorias.tsx
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { IoIosArrowDown } from "react-icons/io";
@@ -9,7 +8,7 @@ interface PatrimonioCompleto {
     codigo: number;
     porcentagem: number;
     valorFinal: string;
-    patrimonio: any; // referência ao patrimônio original
+    patrimonio: any;
 }
 
 interface CategoriaProps {
@@ -27,6 +26,8 @@ export default function Categoria({
     onAddClick,
     onSelectPatrimonio
 }: CategoriaProps) {
+    console.log(`Renderizando categoria ${tipo} com ${itens.length} itens`); // Debug log
+
     return (
         <Collapsible className="w-full h-fit">
             <div className="h-fit m-5 py-4 border-white border-2 border-solid flex flex-row justify-between items-center pl-3 text-white">
@@ -70,16 +71,16 @@ export default function Categoria({
                                 </div>
                                 <div className="text-center flex flex-col gap-1">
                                     <div className={`${item.porcentagem > 60 ? "text-red-500" :
-                                            item.porcentagem < 29 ? 'text-green-500' :
-                                                "text-yellow-300"
+                                        item.porcentagem < 29 ? 'text-green-500' :
+                                            "text-yellow-300"
                                         }`}>
                                         {item.porcentagem}% VF
                                     </div>
                                     <div className="bg-white w-32 h-4">
                                         <div
                                             className={`h-4 ${item.porcentagem > 60 ? "bg-red-500" :
-                                                    item.porcentagem < 29 ? 'bg-green-500' :
-                                                        "bg-yellow-300"
+                                                item.porcentagem < 29 ? 'bg-green-500' :
+                                                    "bg-yellow-300"
                                                 }`}
                                             style={{ width: `${item.porcentagem}%` }}
                                         ></div>

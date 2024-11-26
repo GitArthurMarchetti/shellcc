@@ -28,17 +28,34 @@ router.get('/categories/:roomId', authenticateToken, async (req, res) => {
      try {
           const { roomId } = req.params;
 
+          // Verificar se o usuário tem acesso à sala
+          const memberCheck = await pool.query(
+               `SELECT rm.role 
+               FROM room_members rm 
+               WHERE rm.room_id = $1 AND rm.user_id = $2`,
+               [roomId, req.user.userId]
+          );
+
+          if (memberCheck.rows.length === 0) {
+               return res.status(403).json({ error: 'Acesso negado a esta sala' });
+          }
+
           const result = await pool.query(
-               'SELECT * FROM categories WHERE room_id = $1 ORDER BY name',
+               `SELECT c.* 
+               FROM categories c 
+               WHERE c.room_id = $1 
+               ORDER BY c.name`,
                [roomId]
           );
 
+          console.log('Categorias encontradas:', result.rows); // Log para debug
           res.json(result.rows);
      } catch (error) {
           console.error('Erro ao listar categorias:', error);
           res.status(500).json({ error: 'Erro ao listar categorias' });
      }
 });
+
 
 router.put('/categories/:id', authenticateToken, async (req, res) => {
      try {
